@@ -1,0 +1,13 @@
+{
+    "name": "http/fasthttp",
+    "parameters": {
+        "tenant_name": "alphabet",
+        "application_name": "app1.maniak.io",
+        "virtual_address": "100.0.0.1",
+        "port": 80,
+        "server_addresses": [
+            "100.0.0.11",
+            "100.0.0.12"
+        ]
+    }
+  }

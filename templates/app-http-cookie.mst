@@ -1,0 +1,40 @@
+{
+  "class": "ADC",
+  "schemaVersion": "3.11.0",
+  "{{tenant_name}}": {
+    "class": "Tenant",
+    "{{application_name}}": {
+      "class": "Application",
+      "serviceMain": {
+        "class": "Service_Generic",
+        "virtualAddresses": ["{{virtual_address}}"],
+        "pool": "web_pool_{{port}}",
+        "serverTLS": "{{webtls}}"
+      },
+      "web_pool_{{port}}": {
+        "class": "Pool",
+        "monitors": [
+          "http"
+        ],
+        "members": [
+          {
+            "servicePort": {{port::integer}},
+            "serverAddresses": {{server_addresses::array}}
+          }
+        ]
+      },
+      "{{webtls}}": {
+            "class": "TLS_Server",
+            "certificates": [{
+              "certificate": "{{webcert}}"
+            }]
+          },
+          "{{webcert}}": {
+            "class": "Certificate",
+            "remark": "in practice we recommend using a passphrase",
+            "certificate": "{{cert}}",
+            "privateKey": "{{key}}"
+          }
+    }
+  }
+}

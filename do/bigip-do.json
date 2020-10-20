@@ -1,0 +1,154 @@
+{
+    "schemaVersion": "1.0.0",
+    "class": "Device",
+    "async": true,
+    "label": "Onboard BIG-IP into an HA Pair",
+    "Common": {
+        "class": "Tenant",
+        "mySystem": {
+            "class": "System",
+            "hostname": "BIGIP.MANIAK.IO",
+            "cliInactivityTimeout": 1200,
+            "consoleInactivityTimeout": 1200,
+            "autoPhonehome": false
+        },
+        "myDns": {
+            "class": "DNS",
+            "nameServers": [
+                "8.8.8.8",
+                "1.1.1.1"
+            ],
+            "search": [
+                "local",
+				"maniak.io"
+            ]
+        },
+        "myNtp": {
+            "class": "NTP",
+            "servers": [
+                "8.8.8.8",
+                "1.1.1.1"
+            ],
+            "timezone": "UTC"
+        },
+        "root": {
+            "class": "User",
+            "userType": "root",
+            "oldPassword": "W3lcome098!",
+            "newPassword": "W3lcome098!"
+        },
+        "admin": {
+            "class": "User",
+            "userType": "regular",
+            "password": "W3lcome098!",
+            "shell": "bash"
+        },
+        "myProvisioning": {
+            "class": "Provision",
+            "ltm": "nominal",
+            "avr": "nominal",
+            "asm": "nominal",
+            "ilx": "nominal"
+        },
+        "internal": {
+            "class": "VLAN",
+            "tag": 4093,
+            "mtu": 1500,
+            "interfaces": [
+                {
+                    "name": "1.2",
+                    "tagged": true
+                }
+            ],
+            "cmpHash": "dst-ip"
+        },
+        "internal-self": {
+            "class": "SelfIp",
+            "address": "10.10.0.100/24",
+            "vlan": "internal",
+            "allowService": "default",
+            "trafficGroup": "traffic-group-local-only"
+        },
+        "external": {
+            "class": "VLAN",
+            "tag": 4094,
+            "mtu": 1500,
+            "interfaces": [
+                {
+                    "name": "1.1",
+                    "tagged": true
+                }
+            ],
+            "cmpHash": "src-ip"
+        },
+        "external-self": {
+            "class": "SelfIp",
+            "address": "10.20.0.100/24",
+            "vlan": "external",
+            "allowService": "none",
+            "trafficGroup": "traffic-group-local-only"
+        },
+        "default": {
+            "class": "Route",
+            "gw": "10.10.0.1",
+            "network": "default",
+            "mtu": 1500
+        },
+        "sshSettings": {
+            "class": "SSHD",
+            "banner": "---WARNING NOTICE--- This system is restricted solely to specifically authorized users for legitimate business purposes only.  The actual or attempted unauthorized access, use, or modification of this system is strictly prohibited. Unauthorized users are subject to Company disciplinary proceedings and/or criminal and civil penalties under state, federal, or other applicable domestic and foreign laws. The use of this system may be monitored and recorded for administrative and security reasons.  Anyone accessing this system expressly consents to such monitoring and is advised that these logs may be used as evidence in any civil/criminal proceedings. All users must comply with Corporate Instructions regarding the protection of company Information assets.",
+            "inactivityTimeout": 600,
+            "ciphers": [
+                "aes128-ctr",
+                "aes192-ctr",
+                "aes256-ctr"
+            ],
+            "loginGraceTime": 600,
+            "MACS": [
+                "hmac-sha1",
+                "hmac-ripemd160",
+                "hmac-md5"
+            ],
+            "maxAuthTries": 10,
+            "maxStartups": "5",
+            "protocol": 1
+        },
+        "httpdSettings": {
+            "class": "HTTPD",
+            "authPamIdleTimeout": 900,
+            "maxClients": 10,
+            "sslCiphersuite": [
+                "ECDHE-RSA-AES128-GCM-SHA256",
+                "ECDHE-RSA-AES256-GCM-SHA384",
+                "ECDHE-RSA-AES128-SHA256",
+                "ECDHE-RSA-AES256-SHA384",
+                "ECDHE-ECDSA-AES128-GCM-SHA256",
+                "ECDHE-ECDSA-AES256-GCM-SHA384",
+                "ECDHE-ECDSA-AES128-SHA256",
+                "ECDHE-ECDSA-AES256-SHA384",
+                "AES128-GCM-SHA256",
+                "AES256-GCM-SHA384",
+                "AES128-SHA256"
+            ],
+            "sslProtocol": "all -SSLv2 -SSLv3 -TLSv1"
+        },
+        "mySnmpAgent": {
+            "class": "SnmpAgent",
+            "contact": "networkoperationscentre@maniak.io",
+            "location": "CIVIC"
+        },
+        "N3tW0rK174": {
+            "class": "SnmpCommunity",
+            "ipv6": false,
+            "source": "all",
+            "oid": ".1",
+            "access": "ro"
+        },
+        "dbvars": {
+            "class": "DbVariables",
+            "ui.advisory.enabled": true,
+            "ui.advisory.color": "green",
+            "ui.advisory.text": "BIGIP.MANIAK.IO"
+        }
+    }
+}

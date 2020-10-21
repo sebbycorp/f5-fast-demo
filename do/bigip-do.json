@@ -31,12 +31,6 @@
             ],
             "timezone": "UTC"
         },
-        "root": {
-            "class": "User",
-            "userType": "root",
-            "oldPassword": "W3lcome098!",
-            "newPassword": "W3lcome098!"
-        },
         "admin": {
             "class": "User",
             "userType": "regular",
@@ -47,7 +41,6 @@
             "class": "Provision",
             "ltm": "nominal",
             "avr": "nominal",
-            "asm": "nominal",
             "ilx": "nominal"
         },
         "internal": {
@@ -135,7 +128,7 @@
         "mySnmpAgent": {
             "class": "SnmpAgent",
             "contact": "networkoperationscentre@maniak.io",
-            "location": "CIVIC"
+            "location": "lab"
         },
         "N3tW0rK174": {
             "class": "SnmpCommunity",

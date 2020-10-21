@@ -3,6 +3,8 @@
 
 Steps Setting up F5 using Visual Code Studio
 
+
+
 1. The following diagram showcases our setup. single F5 VE with a VIP and 3 pool members
 2. Install F5 FAST extension in Visual Code Studio
 3. Boot your new f5 instance
@@ -18,3 +20,4 @@ Steps Setting up F5 using Visual Code Studio
 13. Delete it the AS3
 14. EXECUTE COMMAND TO VALIDATE
 15. Build AS3 FAST template 
+stream
